@@ -39,7 +39,7 @@ def main():
     # Get the number of actions for our wrapper
     num_actions = base_env.action_space.n
 
-    env = gymnasium.wrappers.TimeLimit(base_env, max_episode_steps=2000)
+    # env = gymnasium.wrappers.TimeLimit(base_env, max_episode_steps=2000)
     env = Monitor(env, log_dir, allow_early_resets=True)
     
     # FlattenObservation must be applied LAST for the wrapper to work correctly
