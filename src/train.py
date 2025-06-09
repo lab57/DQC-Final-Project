@@ -21,8 +21,9 @@ def main():
     parser.add_argument("--timesteps", type=int, default=250000, help="Total training timesteps for this run")
     parser.add_argument("--load", type=str, default=None, help="Path to a saved model to continue training from")
     args = parser.parse_args()
-
-    if torch.backends.mps.is_available():
+    if torch.cuda.is_available():
+        device = "cuda"
+    elif torch.backends.mps.is_available():
         device = "mps"
     else:
         device = "cpu"
