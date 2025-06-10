@@ -124,10 +124,10 @@ class QuantumCompilerEnv(gym.Env):
         info = {}
 
         action_mask = self._get_obs()['action_mask']
-        # if action_mask[action_idx] == 0:
-        #     # Taking an invalid action is a waste of a step but not a terminal condition
-        #     reward = -500 # Heavy penalty
-        #     return self._get_obs(), reward, terminated, truncated, info
+        if action_mask[action_idx] == 0:
+            # Taking an invalid action is a waste of a step but not a terminal condition
+            reward = -500 # Heavy penalty
+            return self._get_obs(), reward, terminated, truncated, info
 
         if action_type == "stop":
             self.time_elapsed += 1
