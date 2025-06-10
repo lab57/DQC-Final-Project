@@ -35,6 +35,6 @@ class QNetworkWrapper(nn.Module):
         
         # 3. Apply the mask: where the mask is 0, set Q-value to -infinity.
         # This ensures that an invalid action will never be chosen as the maximum.
-        masked_q_values = q_values.masked_fill(mask == 0, -torch.inf)
+        masked_q_values = q_values.masked_fill(mask == 0, -1e8)
         
         return masked_q_values
